@@ -71,7 +71,7 @@ public:
   float currentFrame;
   bool life;
 
-  bool Collision(const FloatRect& rect, const String& chars) // Проверка возможности дальнейшего движения. Проверка
+  static bool Collision(const FloatRect& rect, const String& chars) // Проверка возможности дальнейшего движения. Проверка
                           // столкновения с текстурой.
                           // O(H*W), где H - высота персонажа, W - ширина персонажа
   {

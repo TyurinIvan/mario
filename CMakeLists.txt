@@ -9,12 +9,12 @@ include_directories(${SFML_INCLUDE_DIR})
 
 
 add_executable(main  mario.cpp)	
-#add_executable(game_test mario.cpp  game_test.cpp)
+add_executable(game_test game.hpp  game_test.cpp)
 
 
 target_link_libraries(main PUBLIC sfml-window sfml-graphics) 
-#target_link_libraries(game_test PUBLIC sfml-window sfml-graphics)
+target_link_libraries(game_test PUBLIC sfml-window sfml-graphics)
 
 
 enable_testing()
-#add_test(game_test game_test)
+add_test(game_test game_test)
