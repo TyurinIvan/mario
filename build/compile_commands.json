@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/AiP/mario/mario/build",
+  "command": "C:\\Users\\User-PC\\Desktop\\Latin\\test-usb\\test-usb\\LLVM\\bin\\clang++.exe   -isystem C:/AiP/SFML-2.5.1/include  -target x86_64-pc-windows-gnu -fuse-ld=lld -g   -o CMakeFiles\\main.dir\\mario.obj -c C:\\AiP\\mario\\mario\\mario.cpp",
+  "file": "C:/AiP/mario/mario/mario.cpp"
+}
+]
