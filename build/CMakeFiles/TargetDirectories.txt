@@ -1,4 +1,0 @@
-C:/AiP/mario/mario/build/CMakeFiles/edit_cache.dir
-C:/AiP/mario/mario/build/CMakeFiles/main.dir
-C:/AiP/mario/mario/build/CMakeFiles/rebuild_cache.dir
-C:/AiP/mario/mario/build/CMakeFiles/test.dir

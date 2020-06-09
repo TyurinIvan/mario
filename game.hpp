@@ -70,6 +70,23 @@ public:
   Sprite sprite;
   float currentFrame;
   bool life;
+
+  bool Collision(const FloatRect& rect, const String& chars) // Проверка возможности дальнейшего движения. Проверка
+                          // столкновения с текстурой.
+                          // O(H*W), где H - высота персонажа, W - ширина персонажа
+  {
+
+    for (int i = rect.top / 16; i < (rect.top + rect.height) / 16; i++) {
+      for (int j = rect.left / 16; j < (rect.left + rect.width) / 16; j++) {
+        for (char c : chars) {
+          if (TileMap[i][j] == c) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 };
 class PLAYER : public OBJECTS
 //Создаем класс игрока. Описываем его координаты.
@@ -90,7 +107,7 @@ public:
   {
 
     rect.left += dx * time;
-    while (Collision(rect, TileMap)) {
+    while (Collision(rect, "Pk0rt")) {
       rect.left -= dx * rect.width;
     }
 
@@ -98,8 +115,8 @@ public:
       dy = dy + 0.0005 * time;
     rect.top += dy * time;
     onGround = false;
-    if (Collision(rect, TileMap)) {
-      while (Collision(rect, TileMap)) {
+    if (Collision(rect, "Pk0rt")) {
+      while (Collision(rect, "Pk0rt")) {
         rect.top -= dy * rect.height;
       }
       if (dy > 0) {
@@ -122,22 +139,6 @@ public:
     dx = 0;
   }
 
-  bool Collision(const FloatRect& rect, const String* TileMap) // Проверка возможности дальнейшего движения. Проверка
-                          // столкновения с текстурой.
-                          // O(H*W), где H - высота персонажа, W - ширина персонажа
-  {
-
-    for (int i = rect.top / 16; i < (rect.top + rect.height) / 16; i++) {
-      for (int j = rect.left / 16; j < (rect.left + rect.width) / 16; j++) {
-        if ((TileMap[i][j] == 'P') || (TileMap[i][j] == 'k') ||
-            (TileMap[i][j] == '0') || (TileMap[i][j] == 'r') ||
-            (TileMap[i][j] == 't')) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
 };
 
 class ENEMY : public OBJECTS
@@ -159,9 +160,9 @@ public:
   {
     rect.left += dx * time;
 
-    if (Collision(rect, TileMap)) {
+    if (Collision(rect, "P0")) {
       dx *= -1;
-      while (Collision(rect, TileMap)) {
+      while (Collision(rect, "P0")) {
         rect.left += dx * rect.width;
       }
     }
@@ -175,20 +176,6 @@ public:
       sprite.setTextureRect(IntRect(58, 0, 16, 16));
 
     sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
-  }
-
-  bool Collision(const FloatRect& rect, const Sting*& TileMap) // Проверка столкновения с текстурами. Проверяем возможность
-                   // дальнейшего движения.
-                   // O(H*W), где H - высота врага, W - ширина врага, размер тайла считаем константой
-  {
-    for (int i = rect.top / 16; i < (rect.top + rect.height) / 16; i++) {
-      for (int a = rect.left / 16; a < (rect.left + rect.width) / 16; a++) {
-        if ((TileMap[i][a] == 'P') || (TileMap[i][a] == '0')) {
-          return true;
-        }
-      }
-    }
-    return false;
   }
 };
 
